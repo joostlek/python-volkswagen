@@ -1,8 +1,13 @@
 """Asynchronous Python client for Volkswagen."""
 
-
-from aiovolkswagen.exceptions import VolkswagenError, VolkswagenConnectionError, VolkswagenAuthenticationError, \
-    VolkswagenValidationError, VolkswagenNotFoundError, VolkswagenBadRequestError
+from aiovolkswagen.exceptions import (
+    VolkswagenError,
+    VolkswagenConnectionError,
+    VolkswagenAuthenticationError,
+    VolkswagenValidationError,
+    VolkswagenNotFoundError,
+    VolkswagenBadRequestError,
+)
 from aiovolkswagen.volkswagen import Volkswagen
 
 __all__ = [

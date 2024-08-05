@@ -1,4 +1,5 @@
 """Models for Volkswagen."""
+
 from dataclasses import dataclass
 
 from mashumaro.mixins.orjson import DataClassORJSONMixin
@@ -6,6 +7,7 @@ from mashumaro.mixins.orjson import DataClassORJSONMixin
 
 @dataclass
 class OpenIDConfiguration(DataClassORJSONMixin):
+    """OpenID Configuration for Volkswagen."""
 
     issuer: str
     authorization_endpoint: str
@@ -24,4 +26,3 @@ class OpenIDConfiguration(DataClassORJSONMixin):
     revocation_endpoint: str
     code_challenge_methods_supported: list[str]
     end_session_endpoint: str
-
