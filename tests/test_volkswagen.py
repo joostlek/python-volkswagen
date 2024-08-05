@@ -3,21 +3,17 @@
 from __future__ import annotations
 
 import asyncio
-from datetime import date
 from typing import TYPE_CHECKING, Any
 
 import aiohttp
-from aiohttp.hdrs import METH_GET, METH_POST, METH_PUT, METH_DELETE
 from aioresponses import CallbackResult, aioresponses
 import pytest
-from yarl import URL
 
 from aiovolkswagen.volkswagen import Volkswagen
 
 from aiovolkswagen.exceptions import VolkswagenError, VolkswagenConnectionError
 from tests import load_fixture
 
-from .const import HEADERS
 
 if TYPE_CHECKING:
     from syrupy import SnapshotAssertion
@@ -73,7 +69,6 @@ async def test_unexpected_server_response(
         assert await volkswagen_client.get_openid_configuration()
 
 
-
 async def test_timeout(
     responses: aioresponses,
 ) -> None:
@@ -89,9 +84,7 @@ async def test_timeout(
         "https://identity.vwgroup.io/.well-known/openid-configuration",
         callback=response_handler,
     )
-    async with Volkswagen(
-        request_timeout=1
-    ) as volkswagen_client:
+    async with Volkswagen(request_timeout=1) as volkswagen_client:
         with pytest.raises(VolkswagenConnectionError):
             assert await volkswagen_client.get_openid_configuration()
 
@@ -108,4 +101,3 @@ async def test_about(
         body=load_fixture("openid-configuration.json"),
     )
     assert await volkswagen_client.get_openid_configuration() == snapshot
-

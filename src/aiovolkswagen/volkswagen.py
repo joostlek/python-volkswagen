@@ -3,15 +3,14 @@
 from __future__ import annotations
 
 import asyncio
-import json
 from dataclasses import dataclass
 from importlib import metadata
-from typing import TYPE_CHECKING, Any, Self
+from typing import Any, Self
 
 from aiohttp import ClientSession
-from yarl import URL
+from aiohttp.hdrs import METH_GET
 
-from aiovolkswagen.exceptions import VolkswagenConnectionError, VolkswagenBadRequestError, VolkswagenError
+from aiovolkswagen.exceptions import VolkswagenConnectionError, VolkswagenError
 from aiovolkswagen.models import OpenIDConfiguration
 
 VERSION = metadata.version(__package__)
@@ -50,7 +49,7 @@ class Volkswagen:
 
         try:
             async with asyncio.timeout(self.request_timeout):
-                response = await self.session.get(url, **kwargs)
+                response = await self.session.request(METH_GET, url, **kwargs)
         except asyncio.TimeoutError as exception:
             msg = "Timeout occurred while connecting to Volkswagen"
             raise VolkswagenConnectionError(msg) from exception
@@ -77,7 +76,9 @@ class Volkswagen:
 
     async def get_openid_configuration(self) -> OpenIDConfiguration:
         """Get the OpenID configuration."""
-        response = await self._request("https://identity.vwgroup.io/.well-known/openid-configuration")
+        response = await self._request(
+            "https://identity.vwgroup.io/.well-known/openid-configuration"
+        )
         return OpenIDConfiguration.from_json(response)
 
     async def close(self) -> None:
