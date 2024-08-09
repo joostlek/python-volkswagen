@@ -1,14 +1,16 @@
 """Example usage of the aiovolkswagen library to login to the Volkswagen We Connect portal."""
 
 import asyncio
+import logging
 
 from aiovolkswagen import Volkswagen
 
 
 async def main() -> None:
     """Main function."""
-    vw_client = Volkswagen()
-    await vw_client.login("username", "password")
+    logging.basicConfig(level=logging.DEBUG)
+    async with Volkswagen() as vw_client:
+        await vw_client.login("m.tijssen@me.com", "C_8TfqnsQ2*Rc8Du")
 
 
 if __name__ == "__main__":

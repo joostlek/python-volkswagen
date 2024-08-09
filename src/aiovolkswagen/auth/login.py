@@ -88,7 +88,6 @@ class DynamicPasswordFormParser(HTMLParser):
             found_data = self._regexp.search(data)
             if not found_data:
                 return
-            print(found_data.groups()[0])
             json_data = orjson.loads(found_data.groups()[0])
             if (error := json_data.get("error")) is not None:
                 raise VolkswagenAuthenticationError(error)
