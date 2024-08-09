@@ -26,3 +26,14 @@ class OpenIDConfiguration(DataClassORJSONMixin):
     revocation_endpoint: str
     code_challenge_methods_supported: list[str]
     end_session_endpoint: str
+
+
+@dataclass
+class Tokens(DataClassORJSONMixin):
+    """Tokens for Volkswagen."""
+
+    access_token: str
+    token_type: str
+    expires_in: int
+    refresh_token: str
+    id_token: str
