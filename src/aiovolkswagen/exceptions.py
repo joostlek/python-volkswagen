@@ -9,8 +9,16 @@ class VolkswagenConnectionError(VolkswagenError):
     """Volkswagen connection exception."""
 
 
+class VolkswagenAccountLockedError(VolkswagenConnectionError):
+    """Volkswagen account locked exception."""
+
+
 class VolkswagenAuthenticationError(VolkswagenError):
     """Volkswagen authentication exception."""
+
+
+class VolkswagenEULAError(VolkswagenAuthenticationError):
+    """Volkswagen EULA exception."""
 
 
 class VolkswagenValidationError(VolkswagenError):

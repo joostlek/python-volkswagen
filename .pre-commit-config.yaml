@@ -73,7 +73,7 @@ repos:
         exclude: ^(poetry\.lock)|(tests\/.*\.(json|ambr))$
         entry: poetry run codespell
         args:
-          - --ignore-words-list=fo,incomfort,nam,bloc,ue,get's
+          - --ignore-words-list=fo,incomfort,nam,bloc,ue,get's,te
       - id: detect-private-key
         name: 🕵️  Detect Private Keys
         language: system
