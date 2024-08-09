@@ -10,7 +10,7 @@ async def main() -> None:
     """Main function."""
     logging.basicConfig(level=logging.DEBUG)
     async with Volkswagen() as vw_client:
-        await vw_client.login("m.tijssen@me.com", "C_8TfqnsQ2*Rc8Du")
+        await vw_client.login("test", "test")
 
 
 if __name__ == "__main__":
